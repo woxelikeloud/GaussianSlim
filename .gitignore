@@ -1,0 +1,16 @@
+renderer/node_modules/
+renderer/build/
+renderer/dist/
+renderer/3DGS_Render_glb_unpack/output/
+renderer/3DGS_Render_glb_unpack/inputs/
+renderer/src/loaders/compactLoader/gaussianslim_wasm.wasm
+renderer/src/loaders/compactLoader/gaussianslim_wasm_pthread.wasm
+renderer/src/loaders/compactLoader/gaussianslim_reconstruction_wasm.wasm
+renderer/src/loaders/compactLoader/gaussianslim_wasm_pthread.worker.js
+renderer/**/*.glb
+renderer/**/*.rsp
+renderer/**/*.map
+renderer/temp/
+renderer/talk/
+.vscode/
+**/.DS_Store

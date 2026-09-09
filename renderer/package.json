@@ -1,0 +1,88 @@
+{
+    "name": "gaussianslim-renderer",
+    "version": "0.4.7",
+    "description": "GaussianSlim WebGL renderer with compact Gaussian loading and decoding",
+    "module": "build/gaussian-splats-3d.module.js",
+    "main": "build/gaussian-splats-3d.umd.cjs",
+    "author": "Mark Kellogg",
+    "license": "MIT",
+    "type": "module",
+    "scripts": {
+        "build-demo": "mkdir -p ./build/demo/lib && cp -r ./demo/. ./build/demo/ && cp ./node_modules/three/build/three.module.js ./build/demo/lib/three.module.js && cp ./browser.html ./build/demo/browser.html",
+        "build-library": "npx rollup -c && mkdir -p ./build/demo/lib && cp ./build/gaussian-splats-3d* ./build/demo/lib/ && cp ./src/loaders/compactLoader/gaussianslim_wasm.js ./src/loaders/compactLoader/gaussianslim_wasm.wasm ./src/loaders/compactLoader/gaussianslim_reconstruction_wasm.js ./src/loaders/compactLoader/gaussianslim_reconstruction_wasm.wasm ./src/loaders/compactLoader/SplatDecoderBootstrap.worker.js ./src/loaders/compactLoader/SplatDecoder.worker.js ./src/loaders/compactLoader/SplatReconstruction.worker.js ./src/loaders/compactLoader/WebCodecsVideoDecoder.js ./src/loaders/compactLoader/WebCodecsCapabilityCanary.js ./src/loaders/compactLoader/TextureStrategy.js ./build/demo/lib/ && for file in ./src/loaders/compactLoader/gaussianslim_wasm_pthread.js ./src/loaders/compactLoader/gaussianslim_wasm_pthread.wasm ./src/loaders/compactLoader/gaussianslim_wasm_pthread.worker.js; do [ ! -f \"$file\" ] || cp \"$file\" ./build/demo/lib/; done",
+        "build": "npm run build-library && npm run build-demo",
+        "build-demo-windows": "(if not exist \".\\build\\demo\" mkdir .\\build\\demo) && xcopy /E .\\demo .\\build\\demo && xcopy .\\node_modules\\three\\build\\three.module.js .\\build\\demo\\lib\\ && copy .\\browser.html .\\build\\demo\\browser.html",
+        "build-library-windows": "npx rollup -c && (if not exist \".\\build\\demo\\lib\" mkdir .\\build\\demo\\lib) && copy .\\build\\gaussian-splats-3d* .\\build\\demo\\lib\\ && copy .\\src\\loaders\\compactLoader\\gaussianslim_wasm.js .\\build\\demo\\lib\\ && copy .\\src\\loaders\\compactLoader\\gaussianslim_wasm.wasm .\\build\\demo\\lib\\ && copy .\\src\\loaders\\compactLoader\\gaussianslim_reconstruction_wasm.js .\\build\\demo\\lib\\ && copy .\\src\\loaders\\compactLoader\\gaussianslim_reconstruction_wasm.wasm .\\build\\demo\\lib\\ && copy .\\src\\loaders\\compactLoader\\SplatDecoderBootstrap.worker.js .\\build\\demo\\lib\\ && copy .\\src\\loaders\\compactLoader\\SplatDecoder.worker.js .\\build\\demo\\lib\\ && copy .\\src\\loaders\\compactLoader\\SplatReconstruction.worker.js .\\build\\demo\\lib\\ && copy .\\src\\loaders\\compactLoader\\WebCodecsVideoDecoder.js .\\build\\demo\\lib\\ && copy .\\src\\loaders\\compactLoader\\WebCodecsCapabilityCanary.js .\\build\\demo\\lib\\ && copy .\\src\\loaders\\compactLoader\\TextureStrategy.js .\\build\\demo\\lib\\ && (if exist .\\src\\loaders\\compactLoader\\gaussianslim_wasm_pthread.js copy .\\src\\loaders\\compactLoader\\gaussianslim_wasm_pthread.js .\\build\\demo\\lib\\) && (if exist .\\src\\loaders\\compactLoader\\gaussianslim_wasm_pthread.wasm copy .\\src\\loaders\\compactLoader\\gaussianslim_wasm_pthread.wasm .\\build\\demo\\lib\\) && (if exist .\\src\\loaders\\compactLoader\\gaussianslim_wasm_pthread.worker.js copy .\\src\\loaders\\compactLoader\\gaussianslim_wasm_pthread.worker.js .\\build\\demo\\lib\\)",
+        "build-windows": "npm run build-library-windows && npm run build-demo-windows",
+        "watch": "npx npm-watch ",
+        "demo": "node util/server.js -d ./build/demo",
+        "fix-styling": "npx stylelint **/*.scss --fix",
+        "fix-js": "npx eslint src --fix",
+        "lint": "npx eslint 'src/**/*.js' || true",
+        "prettify": "npx prettier --write 'src/**/*.js'"
+    },
+    "watch": {
+        "build-library": {
+            "patterns": [
+                "src/**/*.js"
+            ]
+        },
+        "build-demo": {
+            "patterns": [
+                "demo/**/*.*"
+            ]
+        }
+    },
+    "babel": {},
+    "keywords": [
+        "three",
+        "threejs",
+        "three.js",
+        "splatting",
+        "3D",
+        "gaussian",
+        "webgl",
+        "javascript"
+    ],
+    "devDependencies": {
+        "@babel/core": "^7.29.7",
+        "@babel/eslint-parser": "7.22.11",
+        "@babel/plugin-proposal-class-properties": "7.18.6",
+        "@babel/preset-env": "7.22.10",
+        "@rollup/plugin-terser": "^1.0.0",
+        "@rollup/plugin-url": "^8.0.2",
+        "@rollup/pluginutils": "5.0.5",
+        "babel-loader": "9.1.3",
+        "eslint": "8.47.0",
+        "eslint-config-google": "0.14.0",
+        "file-loader": "6.2.0",
+        "http-server": "14.1.1",
+        "npm-watch": "0.11.0",
+        "prettier": "3.0.2",
+        "prettier-eslint": "15.0.1",
+        "rollup": "^3.30.0",
+        "url-loader": "4.1.1"
+    },
+    "peerDependencies": {
+        "three": ">=0.160.0"
+    },
+    "files": [
+        "build/gaussian-splats-3d.umd.cjs",
+        "build/gaussian-splats-3d.umd.cjs.map",
+        "build/gaussian-splats-3d.module.js",
+        "build/gaussian-splats-3d.module.js.map",
+        "build/demo/lib/SplatDecoder.worker.js",
+        "build/demo/lib/SplatDecoderBootstrap.worker.js",
+        "build/demo/lib/SplatReconstruction.worker.js",
+        "build/demo/lib/WebCodecsVideoDecoder.js",
+        "build/demo/lib/WebCodecsCapabilityCanary.js",
+        "build/demo/lib/TextureStrategy.js",
+        "build/demo/lib/gaussianslim_wasm.js",
+        "build/demo/lib/gaussianslim_wasm.wasm",
+        "build/demo/lib/gaussianslim_wasm_pthread.js",
+        "build/demo/lib/gaussianslim_wasm_pthread.wasm",
+        "build/demo/lib/gaussianslim_wasm_pthread.worker.js",
+        "build/demo/lib/gaussianslim_reconstruction_wasm.js",
+        "build/demo/lib/gaussianslim_reconstruction_wasm.wasm"
+    ]
+}
