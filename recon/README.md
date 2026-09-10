@@ -3,11 +3,11 @@
 ## Environment Setup
 
 ```bash
-git clone https://github.com/arno5342/ACD_GS.git
-cd ACD_GS
+git clone https://github.com/arno5342/GaussianSlim.git
+cd GaussianSlim
 
 conda env create -f environment.yml 
-conda activate ACDGS
+conda activate GaussianSlim
 
 export CUDA_HOME=/usr/local/cuda-12.8
 export PATH="$CUDA_HOME/bin:$PATH"

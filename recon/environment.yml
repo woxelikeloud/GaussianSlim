@@ -1,4 +1,4 @@
-name: recon
+name: GaussianSlim
 channels:
   - conda-forge
   - defaults

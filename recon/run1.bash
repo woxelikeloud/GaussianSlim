@@ -1,5 +1,5 @@
 DATASET_ROOT="dataset/deepblending"
-CODE_ROOT="GaussianSlim/ACD-GS"
+CODE_ROOT="GaussianSlim/recon"
 
 # 定义指定的数据集列表
 datalist=(
